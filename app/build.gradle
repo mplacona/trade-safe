@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
-    useLibrary 'org.apache.http.legacy'
+    dataBinding.enabled = true
 
     defaultConfig {
         applicationId "uk.co.placona.tradesafe"
@@ -25,7 +25,13 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:design:23.4.0'
     testCompile 'junit:junit:4.12'
-    testCompile 'org.robolectric:robolectric:3.0'
+    testCompile ('org.robolectric:robolectric:3.1'){
+        exclude group: 'commons-logging', module: 'commons-logging'
+        exclude group: 'org.apache.httpcomponents', module: 'httpclient'
+        exclude group: 'com.android.support', module: 'appcompat'
+        exclude group: 'com.android.support', module: 'support-v7'
+        exclude group: 'com.android.support', module: 'recyclerview-v7'
+    }
     testCompile 'org.robolectric:shadows-support-v4:3.0'
     testCompile "org.mockito:mockito-core:1.+"
 
