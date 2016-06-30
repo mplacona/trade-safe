@@ -2,7 +2,6 @@ package uk.co.placona.tradesafe;
 
 import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.widget.RecyclerView;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,6 +11,7 @@ import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 import org.robolectric.shadows.ShadowLog;
 
+import co.moonmonkeylabs.realmrecyclerview.RealmRecyclerView;
 import uk.co.placona.tradesafe.Activities.MainActivity;
 
 import static org.assertj.android.api.Assertions.assertThat;
@@ -24,7 +24,7 @@ import static org.assertj.android.api.Assertions.assertThat;
 public class MainActivityTest {
     private MainActivity activity;
     private FloatingActionButton fab;
-    private RecyclerView rvTrades;
+    private RealmRecyclerView rvTrades;
 
     @Before
     public void setup() throws Exception{
@@ -34,7 +34,7 @@ public class MainActivityTest {
                 .resume()
                 .get();
         fab = (FloatingActionButton) activity.findViewById(R.id.fab);
-        rvTrades = (RecyclerView) activity.findViewById(R.id.list_trades);
+        rvTrades = (RealmRecyclerView) activity.findViewById(R.id.list_trades);
         ShadowLog.stream = System.out;
     }
 
@@ -77,6 +77,18 @@ public class MainActivityTest {
 //        Intent startedIntent = Shadows.shadowOf(activity).getNextStartedActivity();
 //        Intent expectedIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
 //        assertThat(startedIntent).isEqualTo(expectedIntent);
+//    }
+//
+//    @Test
+//    public void buttonClickShouldStartNewActivity() throws Exception
+//    {
+//        fab.performClick();
+//
+//        ShadowActivity shadowActivity = Shadows.shadowOf(activity);
+//        Intent startedIntent = shadowActivity.getNextStartedActivity();
+//        ShadowIntent shadowIntent = Shadows.shadowOf(startedIntent);
+//        assertEquals(shadowIntent.getIntentClass().getCanonicalName(),CreateActivity.class.getName());
+//
 //    }
 
 }
