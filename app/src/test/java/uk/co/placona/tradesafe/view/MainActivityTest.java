@@ -1,4 +1,4 @@
-package uk.co.placona.tradesafe.Activities;
+package uk.co.placona.tradesafe.view;
 
 import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
@@ -12,7 +12,7 @@ import org.robolectric.annotation.Config;
 import org.robolectric.shadows.ShadowLog;
 
 import co.moonmonkeylabs.realmrecyclerview.RealmRecyclerView;
-import uk.co.placona.tradesafe.App.TestMyApplication;
+import uk.co.placona.tradesafe.App.TestCustomApplication;
 import uk.co.placona.tradesafe.BuildConfig;
 import uk.co.placona.tradesafe.R;
 
@@ -22,7 +22,7 @@ import static org.assertj.android.api.Assertions.assertThat;
  * Created by mplacona on 22/06/2016.
  */
 @RunWith(RobolectricGradleTestRunner.class)
-@Config(constants = BuildConfig.class, sdk = Build.VERSION_CODES.LOLLIPOP, manifest = "src/main/AndroidManifest.xml", packageName = "uk.co.placona.tradesafe")
+@Config(constants = BuildConfig.class, sdk = Build.VERSION_CODES.LOLLIPOP, manifest = "src/main/AndroidManifest.xml", packageName = "uk.co.placona.tradesafe", application = TestCustomApplication.class)
 public class MainActivityTest {
     private MainActivity activity;
     private FloatingActionButton fab;

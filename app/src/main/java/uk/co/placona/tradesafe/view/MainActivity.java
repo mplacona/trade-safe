@@ -1,4 +1,4 @@
-package uk.co.placona.tradesafe.Activities;
+package uk.co.placona.tradesafe.view;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -11,14 +11,16 @@ import android.view.View;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.inject.Inject;
+
 import co.moonmonkeylabs.realmrecyclerview.RealmRecyclerView;
 import io.realm.RealmResults;
-import io.realm.Sort;
-import uk.co.placona.tradesafe.Adapters.TradeRecyclerViewAdapter;
-import uk.co.placona.tradesafe.App.MyApplication;
-import uk.co.placona.tradesafe.Models.Trade;
 import uk.co.placona.tradesafe.R;
+import uk.co.placona.tradesafe.adapters.TradeRecyclerViewAdapter;
+import uk.co.placona.tradesafe.component.Injector;
 import uk.co.placona.tradesafe.databinding.ActivityMainBinding;
+import uk.co.placona.tradesafe.models.Trade;
+import uk.co.placona.tradesafe.repository.TradeRepository;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,11 +30,16 @@ public class MainActivity extends AppCompatActivity {
     private RealmRecyclerView realmRecyclerView;
     private TradeRecyclerViewAdapter tradeAdapter;
 
+    @Inject
+    TradeRepository tradeRepository;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         setSupportActionBar(binding.toolbar);
+
+        Injector.getApplicationComponent().inject(this);
 
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,29 +51,26 @@ public class MainActivity extends AppCompatActivity {
         realmRecyclerView = (RealmRecyclerView) findViewById(R.id.list_trades);
 
         // load some data
-        //addFakeData();
+        addFakeData();
 
         loadTrades();
     }
 
     private void addFakeData() {
-        MyApplication.realm.beginTransaction();
-
-        MyApplication.realm.deleteAll();
+        tradeRepository.clear();
 
         String mydate = java.text.DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
 
         for (int i = 0; i < 10; i++) {
-            Trade tradeModel = new Trade("trade"+i, "uri"+i, "description"+i, new Date(mydate));
-            MyApplication.realm.copyToRealm(tradeModel);
+            Trade tradeModel = new Trade("tradez"+i, "uri"+i, "description"+i, new Date(mydate));
+            tradeRepository.add(tradeModel);
         }
-        MyApplication.realm.commitTransaction();
 
     }
 
     private void loadTrades() {
-        RealmResults<Trade> tradeModels =
-                MyApplication.realm.where(Trade.class).findAllSorted("reference", Sort.ASCENDING);
+        RealmResults<Trade> tradeModels = tradeRepository.findAll();
+        //MyApplication.realm.where(Trade.class).findAllSorted("reference", Sort.ASCENDING);
         tradeAdapter = new TradeRecyclerViewAdapter(getBaseContext(), tradeModels);
         realmRecyclerView.setAdapter(tradeAdapter);
     }
