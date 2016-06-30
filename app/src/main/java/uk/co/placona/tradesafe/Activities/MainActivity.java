@@ -6,17 +6,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.concurrent.atomic.AtomicLong;
 
 import co.moonmonkeylabs.realmrecyclerview.RealmRecyclerView;
-import io.realm.Realm;
-import io.realm.RealmConfiguration;
 import io.realm.RealmResults;
 import io.realm.Sort;
 import uk.co.placona.tradesafe.Adapters.TradeRecyclerViewAdapter;
@@ -49,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         realmRecyclerView = (RealmRecyclerView) findViewById(R.id.list_trades);
 
         // load some data
-        addFakeData();
+        //addFakeData();
 
         loadTrades();
     }

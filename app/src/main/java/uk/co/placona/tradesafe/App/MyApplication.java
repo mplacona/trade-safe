@@ -25,13 +25,21 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+        initialiseRealm();
+
+        initialiseStetho();
+    }
+
+    public void initialiseRealm() {
         realmConfig = new RealmConfiguration.Builder(this).build();
         Realm.setDefaultConfiguration(realmConfig);
 
         realm = Realm.getDefaultInstance();
 
         primaryKeyValue = new AtomicLong(realm.where(Trade.class).max("id").longValue());
+    }
 
+    public void initialiseStetho(){
         Stetho.initialize(
                 Stetho.newInitializerBuilder(this)
                         .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))

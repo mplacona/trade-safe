@@ -1,4 +1,4 @@
-package uk.co.placona.tradesafe;
+package uk.co.placona.tradesafe.Activities;
 
 import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
@@ -12,7 +12,9 @@ import org.robolectric.annotation.Config;
 import org.robolectric.shadows.ShadowLog;
 
 import co.moonmonkeylabs.realmrecyclerview.RealmRecyclerView;
-import uk.co.placona.tradesafe.Activities.MainActivity;
+import uk.co.placona.tradesafe.App.TestMyApplication;
+import uk.co.placona.tradesafe.BuildConfig;
+import uk.co.placona.tradesafe.R;
 
 import static org.assertj.android.api.Assertions.assertThat;
 
