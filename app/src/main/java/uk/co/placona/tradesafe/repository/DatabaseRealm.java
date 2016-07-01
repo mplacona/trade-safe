@@ -25,7 +25,6 @@ public class DatabaseRealm {
         if (realmConfiguration == null) {
             realmConfiguration = new RealmConfiguration
                     .Builder(mContext)
-                    .deleteRealmIfMigrationNeeded()
                     .build();
 
             Realm.setDefaultConfiguration(realmConfiguration);
