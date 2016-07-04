@@ -1,17 +1,18 @@
-package uk.co.placona.tradesafe.Models;
+package uk.co.placona.tradesafe.models;
 
 import java.util.Date;
+import java.util.UUID;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
-import uk.co.placona.tradesafe.App.MyApplication;
+import uk.co.placona.tradesafe.CustomApplication;
 
 /**
  * Created by mplacona on 27/06/2016.
  */
 public class Trade extends RealmObject {
     @PrimaryKey
-    private long id = MyApplication.primaryKeyValue.incrementAndGet();
+    private String id = UUID.randomUUID().toString();
     private String reference;
     private String uri;
     private String description;
@@ -45,11 +46,11 @@ public class Trade extends RealmObject {
         this.description = description;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

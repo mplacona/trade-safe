@@ -2,14 +2,18 @@ apply plugin: 'com.android.application'
 apply plugin: 'realm-android'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    compileSdkVersion 24
+    buildToolsVersion "24.0.0"
     dataBinding.enabled = true
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 
     defaultConfig {
         applicationId "uk.co.placona.tradesafe"
         minSdkVersion 16
-        targetSdkVersion 21
+        targetSdkVersion 24
         versionCode 1
         versionName "1.0"
     }
@@ -23,27 +27,39 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.android.support:design:23.4.0'
+    compile 'com.android.support:appcompat-v7:24.0.0'
+    compile 'com.android.support:design:24.0.0'
     compile 'com.github.thorbenprimke:realm-recyclerview:0.9.15'
+    compile 'com.google.dagger:dagger:2.5'
+
+    compile 'io.reactivex:rxjava:1.1.0'
+    compile 'io.reactivex:rxandroid:1.1.0'
+
+    provided 'javax.annotation:jsr250-api:1.0'
+
     debugCompile 'com.facebook.stetho:stetho:1.3.1'
     debugCompile 'com.uphyca:stetho_realm:0.9.0'
 
+    compile 'com.jakewharton:butterknife:8.1.0'
+
     testCompile 'junit:junit:4.12'
-    testCompile ('org.robolectric:robolectric:3.1'){
-        exclude group: 'commons-logging', module: 'commons-logging'
-        exclude group: 'org.apache.httpcomponents', module: 'httpclient'
-        exclude group: 'com.android.support', module: 'appcompat'
-        exclude group: 'com.android.support', module: 'support-v7'
-        exclude group: 'com.android.support', module: 'recyclerview-v7'
-    }
+    testCompile 'org.robolectric:robolectric:3.1'
     testCompile 'org.robolectric:shadows-support-v4:3.0'
-    testCompile "org.mockito:mockito-core:1.+"
+    testCompile 'org.robolectric:shadows-support-v4:3.0'
+    testCompile "org.mockito:mockito-core:1.10.19"
 
     testCompile ('com.squareup.assertj:assertj-android:1.1.1') {
         exclude group: 'com.android.support'
     }
 
-    testCompile 'org.hamcrest:hamcrest-library:1.3'
+    testCompile "org.powermock:powermock-module-junit4:1.6.4"
+    testCompile "org.powermock:powermock-module-junit4-rule:1.6.4"
+    testCompile "org.powermock:powermock-api-mockito:1.6.4"
+    testCompile "org.powermock:powermock-classloading-xstream:1.6.4"
 
+    testCompile 'org.hamcrest:hamcrest-library:1.3'
+    testProvided 'com.google.dagger:dagger-compiler:2.5'
+
+    apt 'com.google.dagger:dagger-compiler:2.5'
+    apt 'com.jakewharton:butterknife-compiler:8.0.1'
 }

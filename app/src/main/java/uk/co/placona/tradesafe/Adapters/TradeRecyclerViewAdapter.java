@@ -1,17 +1,15 @@
-package uk.co.placona.tradesafe.Adapters;
+package uk.co.placona.tradesafe.adapters;
 
 import android.content.Context;
-import android.os.AsyncTask;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import io.realm.RealmBasedRecyclerViewAdapter;
 import io.realm.RealmResults;
 import io.realm.RealmViewHolder;
-import uk.co.placona.tradesafe.Models.Trade;
+import uk.co.placona.tradesafe.models.Trade;
 import uk.co.placona.tradesafe.R;
 
 public class TradeRecyclerViewAdapter extends RealmBasedRecyclerViewAdapter<
