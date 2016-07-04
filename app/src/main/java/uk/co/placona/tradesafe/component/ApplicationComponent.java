@@ -4,6 +4,7 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 import uk.co.placona.tradesafe.CustomApplication;
+import uk.co.placona.tradesafe.repository.impl.StethoDebugImpl;
 import uk.co.placona.tradesafe.view.MainActivity;
 import uk.co.placona.tradesafe.component.module.ApplicationContextModule;
 import uk.co.placona.tradesafe.component.module.RepositoryModule;
@@ -19,5 +20,6 @@ public interface ApplicationComponent {
 
     void inject(DatabaseRealm databaseRealm);
     void inject(TradeRepositoryImpl tradeRepository);
+    void inject(StethoDebugImpl stethoDebug);
 
 }

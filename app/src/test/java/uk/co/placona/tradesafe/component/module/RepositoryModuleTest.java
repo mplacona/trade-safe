@@ -1,6 +1,7 @@
 package uk.co.placona.tradesafe.component.module;
 
 import uk.co.placona.tradesafe.repository.DatabaseRealm;
+import uk.co.placona.tradesafe.repository.StethoDebug;
 import uk.co.placona.tradesafe.repository.TradeRepository;
 import uk.co.placona.tradesafe.repository.impl.TradeRepositoryImpl;
 import javax.inject.Singleton;
@@ -29,5 +30,11 @@ public class RepositoryModuleTest {
     @Singleton
     public DatabaseRealm provideDatabaseHelper() {
         return mock(DatabaseRealm.class);
+    }
+
+    @Provides
+    @Singleton
+    public StethoDebug provideStethoDebug() {
+        return mock(StethoDebug.class);
     }
 }
