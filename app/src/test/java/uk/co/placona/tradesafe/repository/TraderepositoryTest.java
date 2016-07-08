@@ -70,10 +70,10 @@ public class TradeRepositoryTest {
         trade.setUri(TRADE_URI);
         trade.setDate(TRADE_DATE);
 
-        when(databaseRealm.add(trade)).thenReturn(trade);
+        when(databaseRealm.upsert(trade)).thenReturn(trade);
 
-        messageRepository.add(trade);
+        messageRepository.upsert(trade);
 
-        verify(databaseRealm).add(trade);
+        verify(databaseRealm).upsert(trade);
     }
 }

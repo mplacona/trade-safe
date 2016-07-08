@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         realmRecyclerView = (RealmRecyclerView) findViewById(R.id.list_trades);
 
         // load some data
-        addFakeData();
+        //addFakeData();
 
         loadTrades();
     }
@@ -62,8 +62,8 @@ public class MainActivity extends AppCompatActivity {
         String mydate = java.text.DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
 
         for (int i = 0; i < 10; i++) {
-            Trade tradeModel = new Trade("tradez"+i, "uri"+i, "description"+i, new Date(mydate));
-            tradeRepository.add(tradeModel);
+            Trade tradeModel = new Trade("trade"+i, "uri"+i, "description"+i, new Date(mydate));
+            tradeRepository.upsert(tradeModel);
         }
 
     }

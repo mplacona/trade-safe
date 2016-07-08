@@ -18,6 +18,7 @@
         android:layout_height="match_parent"
         app:rrvIsRefreshable="false"
         app:rrvLayoutType="LinearLayout"
+        app:rrvSwipeToDelete="true"
         />
 
 </RelativeLayout>

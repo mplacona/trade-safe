@@ -29,9 +29,14 @@ public class TradeRepositoryImpl implements TradeRepository{
     }
 
     @Override
-    public void add(Trade trade) {
+    public Trade find(String id) {
+        return databaseRealm.find(Trade.class, id);
+    }
+
+    @Override
+    public void upsert(Trade trade) {
         try {
-            databaseRealm.add(trade);
+            databaseRealm.upsert(trade);
         } catch (Exception e) {
             Log.e(TAG, e.getMessage());
         }

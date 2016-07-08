@@ -6,18 +6,27 @@ import android.widget.VideoView;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PowerMockIgnore;
+import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 
 import uk.co.placona.tradesafe.BuildConfig;
 import uk.co.placona.tradesafe.R;
-import uk.co.placona.tradesafe.databinding.ActivityCreateBinding;
+import uk.co.placona.tradesafe.component.ApplicationComponentTest;
+import uk.co.placona.tradesafe.component.DaggerApplicationComponentTest;
+import uk.co.placona.tradesafe.component.Injector;
+import uk.co.placona.tradesafe.component.module.ApplicationContextModuleTest;
+import uk.co.placona.tradesafe.component.module.RepositoryModuleTest;
 
 import static org.assertj.android.api.Assertions.assertThat;
 
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(constants = BuildConfig.class, sdk = 21)
+@PowerMockIgnore({"org.mockito.*", "org.robolectric.*", "android.*"})
+@PrepareForTest({Injector.class})
 public class CreateActivityTest {
     private CreateActivity activity;
     private EditText reference_txt;
@@ -25,7 +34,17 @@ public class CreateActivityTest {
     private VideoView video_view;
 
     @Before
-    public void setupActivity(){
+    public void setupDagger() {
+        ApplicationComponentTest applicationComponentTest = DaggerApplicationComponentTest.builder()
+                .applicationContextModuleTest(new ApplicationContextModuleTest())
+                .repositoryModuleTest(new RepositoryModuleTest(false))
+                .build();
+
+        PowerMockito.mockStatic(Injector.class);
+        PowerMockito.when(Injector.getApplicationComponent()).thenReturn(applicationComponentTest);
+
+        ((ApplicationComponentTest) Injector.getApplicationComponent()).inject(this);
+
         activity = Robolectric.setupActivity(CreateActivity.class);
         reference_txt = (EditText) activity.findViewById(R.id.reference_txt);
         description_text = (EditText) activity.findViewById(R.id.description_txt);

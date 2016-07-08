@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.RealmObject;
+import io.realm.RealmQuery;
 import io.realm.RealmResults;
 import uk.co.placona.tradesafe.component.Injector;
 
@@ -37,16 +38,20 @@ public class DatabaseRealm {
         return Realm.getDefaultInstance();
     }
 
-    public <T extends RealmObject> T add(T model) {
+    public <T extends RealmObject> T upsert(T model) {
         Realm realm = getRealmInstance();
         realm.beginTransaction();
-        realm.copyToRealm(model);
+        realm.copyToRealmOrUpdate(model);
         realm.commitTransaction();
         return model;
     }
 
     public <T extends RealmObject> RealmResults<T> findAll(Class<T> clazz) {
         return getRealmInstance().where(clazz).findAll();
+    }
+
+    public <T extends RealmObject> T find(Class<T> clazz, String id) {
+        return getRealmInstance().where(clazz).equalTo("id", id).findFirst();
     }
 
     public <T extends RealmObject> void clear(Class<T> clazz){

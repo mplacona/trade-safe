@@ -1,24 +1,28 @@
 package uk.co.placona.tradesafe.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import io.realm.RealmBasedRecyclerViewAdapter;
 import io.realm.RealmResults;
 import io.realm.RealmViewHolder;
 import uk.co.placona.tradesafe.models.Trade;
 import uk.co.placona.tradesafe.R;
+import uk.co.placona.tradesafe.view.EditActivity;
 
 public class TradeRecyclerViewAdapter extends RealmBasedRecyclerViewAdapter<
         Trade, TradeRecyclerViewAdapter.ViewHolder> {
 
-    public TradeRecyclerViewAdapter(
-            Context context,
+    Context context;
+
+    public TradeRecyclerViewAdapter(Context context,
             RealmResults<Trade> realmResults) {
-        super(context, realmResults, true, true, true, "reference");
+        super(context, realmResults, true, true);
     }
 
     public class ViewHolder extends RealmViewHolder {
@@ -37,6 +41,7 @@ public class TradeRecyclerViewAdapter extends RealmBasedRecyclerViewAdapter<
     @Override
     public ViewHolder onCreateRealmViewHolder(ViewGroup viewGroup, int viewType) {
         View v = inflater.inflate(R.layout.item_trade, viewGroup, false);
+        context = viewGroup.getContext();
         return new ViewHolder((RelativeLayout) v);
     }
 
@@ -49,6 +54,9 @@ public class TradeRecyclerViewAdapter extends RealmBasedRecyclerViewAdapter<
                     @Override
                     public void onClick(View v) {
                         //asyncRemoveCountry(tradeModel.getId());
+                        //Toast.makeText(context, tradeModel.getId().toString(), Toast.LENGTH_SHORT).show();
+                        context.startActivity(new Intent(context, EditActivity.class)
+                                .putExtra("ID", tradeModel.getId().toString()));
                     }
                 }
         );

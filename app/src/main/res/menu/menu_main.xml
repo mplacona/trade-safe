@@ -1,10 +1,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".view.MainActivity">
+    tools:context=".view.CreateActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_save"
+        android:icon="@mipmap/ic_save_black_24dp"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+        android:title="@string/action_save"
+        app:showAsAction="always|withText" />
 </menu>

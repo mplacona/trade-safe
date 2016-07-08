@@ -3,9 +3,9 @@ package uk.co.placona.tradesafe.view;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.net.Uri;
-import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -18,16 +18,17 @@ import java.util.Date;
 
 import javax.inject.Inject;
 
+import io.realm.RealmQuery;
 import uk.co.placona.tradesafe.R;
 import uk.co.placona.tradesafe.component.Injector;
-import uk.co.placona.tradesafe.databinding.ActivityCreateBinding;
+import uk.co.placona.tradesafe.databinding.ActivityEditBinding;
 import uk.co.placona.tradesafe.models.Trade;
 import uk.co.placona.tradesafe.repository.TradeRepository;
 
-public class CreateActivity extends AppCompatActivity {
-
-    private static final String TAG = "CreateActivity";
-    private ActivityCreateBinding binding;
+public class EditActivity extends AppCompatActivity {
+    private static final String TAG = "EditActivity";
+    private ActivityEditBinding binding;
+    private Trade trade;
     private boolean bVideoIsBeingTouched = false;
     private Handler mHandler = new Handler();
     private Uri videoUri;
@@ -38,13 +39,22 @@ public class CreateActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_create);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_edit);
 
         Injector.getApplicationComponent().inject(this);
 
         Intent intent = getIntent();
-        videoUri = intent.getData();
 
+        loadTrade(intent.getExtras().getString("ID"));
+    }
+
+    private void loadTrade(String id) {
+        trade = tradeRepository.find(id);
+
+        binding.descriptionTxt.setText(trade.getDescription());
+        binding.referenceTxt.setText(trade.getReference());
+
+        videoUri = Uri.parse(trade.getUri());
         startVideo(videoUri);
     }
 
@@ -60,7 +70,7 @@ public class CreateActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_save:
-                saveNewEntry();
+                editEntry();
                 return true;
 
             default:
@@ -70,30 +80,21 @@ public class CreateActivity extends AppCompatActivity {
         }
     }
 
-    private void saveNewEntry() {
+    private void editEntry() {
         String referenceText = binding.referenceTxt.getText().toString();
         String descriptionText = binding.descriptionTxt.getText().toString();
 
-        if (referenceText == null || referenceText.length() == 0) {
-            Toast
-                    .makeText(this, "Make sure you have at least a reference for this item", Toast.LENGTH_SHORT)
-                    .show();
-            return;
-        }
+        Trade cTrade = new Trade();
+        cTrade.setId(trade.getId());
+        cTrade.setReference(referenceText);
+        cTrade.setDescription(descriptionText);
+        cTrade.setUri(trade.getUri());
+        cTrade.setDate(trade.getDate());
 
-        String myDate = java.text.DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
-
-        Trade trade = new Trade();
-        trade.setReference(referenceText);
-        trade.setUri(videoUri.toString());
-        trade.setDescription(descriptionText);
-        trade.setDate(new Date(myDate));
-
-        tradeRepository.upsert(trade);
+        tradeRepository.upsert(cTrade);
 
         // we're done here
         finish();
-
     }
 
     private void startVideo(Uri videoUri) {

@@ -23,13 +23,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:24.0.0'
     compile 'com.android.support:design:24.0.0'
-    compile 'com.github.thorbenprimke:realm-recyclerview:0.9.15'
+    compile 'com.android.support:recyclerview-v7:24.0.0'
+    compile 'com.github.thorbenprimke:realm-recyclerview:0.9.22'
     compile 'com.google.dagger:dagger:2.5'
 
     compile 'io.reactivex:rxjava:1.1.0'
@@ -62,4 +68,5 @@ dependencies {
 
     apt 'com.google.dagger:dagger-compiler:2.5'
     apt 'com.jakewharton:butterknife-compiler:8.0.1'
+    apt 'com.android.databinding:compiler:1.0-rc4'
 }

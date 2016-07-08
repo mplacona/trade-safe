@@ -28,6 +28,9 @@
 
     </LinearLayout>
 
+
+    <!--
+    Archive
     <ImageButton
         android:id="@+id/btn_delete"
         android:layout_width="20dp"
@@ -35,6 +38,6 @@
         android:src="@android:drawable/ic_delete"
         style="@style/Widget.AppCompat.Button.Small"
         android:layout_alignParentRight="true"
-        />
+        />-->
 
 </RelativeLayout>
