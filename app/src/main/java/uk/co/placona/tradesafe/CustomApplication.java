@@ -2,11 +2,6 @@ package uk.co.placona.tradesafe;
 
 import android.app.Application;
 
-import com.facebook.stetho.Stetho;
-import com.uphyca.stetho_realm.RealmInspectorModulesProvider;
-
-import java.util.concurrent.atomic.AtomicLong;
-
 import javax.inject.Inject;
 
 import uk.co.placona.tradesafe.component.Injector;
@@ -35,11 +30,11 @@ public class CustomApplication extends Application {
         stethoDebug.setup(this);
     }
 
-    public void initialiseStetho(){
-        Stetho.initialize(
-                Stetho.newInitializerBuilder(this)
-                        .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
-                        .enableWebKitInspector(RealmInspectorModulesProvider.builder(this).build())
-                        .build());
-    }
+//    public void initialiseStetho(){
+//        Stetho.initialize(
+//                Stetho.newInitializerBuilder(this)
+//                        .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
+//                        .enableWebKitInspector(RealmInspectorModulesProvider.builder(this).build())
+//                        .build());
+//    }
 }

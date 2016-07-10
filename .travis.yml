@@ -1,0 +1,15 @@
+language: android
+android:
+  components:
+    - tools
+    - platform-tools
+    - build-tools-24.0.0
+    - android-24
+    - extra-android-m2repository
+
+script:
+   - ./gradlew build connectedCheck
+   - ./gradlew build jacocoTestReport
+
+after_success: 
+  — bash <(curl -s https://codecov.io/bash)
