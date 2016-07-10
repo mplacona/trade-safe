@@ -3,14 +3,15 @@ package uk.co.placona.tradesafe.view;
 import android.support.design.widget.FloatingActionButton;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
+import org.powermock.modules.junit4.rule.PowerMockRule;
 import org.robolectric.Robolectric;
-import org.robolectric.RobolectricGradleTestRunner;
+import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 import org.robolectric.shadows.ShadowLog;
 
@@ -19,9 +20,6 @@ import javax.inject.Inject;
 import co.moonmonkeylabs.realmrecyclerview.RealmRecyclerView;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
-import io.realm.RealmQuery;
-import io.realm.RealmResults;
-import io.realm.internal.RealmCore;
 import uk.co.placona.tradesafe.BuildConfig;
 import uk.co.placona.tradesafe.R;
 import uk.co.placona.tradesafe.component.ApplicationComponentTest;
@@ -39,16 +37,19 @@ import static org.powermock.api.mockito.PowerMockito.mockStatic;
 /**
  * Created by mplacona on 22/06/2016.
  */
-@RunWith(RobolectricGradleTestRunner.class)
+@RunWith(RobolectricTestRunner.class)
 @Config(constants = BuildConfig.class, sdk = 21)
 @PowerMockIgnore({"org.mockito.*", "org.robolectric.*", "android.*"})
-@PrepareForTest({Realm.class, RealmConfiguration.class, RealmQuery.class, RealmResults.class, RealmCore.class, Injector.class})
+@PrepareForTest({Injector.class})
 public class MainActivityTest {
     private MainActivity activity;
     private ActivityMainBinding binding;
 
     FloatingActionButton fab;
     RealmRecyclerView rvTrades;
+
+    @Rule
+    public PowerMockRule rule = new PowerMockRule();
 
     @Inject
     TradeRepository tradeRepository;
