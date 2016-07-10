@@ -29,12 +29,4 @@ public class CustomApplication extends Application {
         databaseRealm.setup();
         stethoDebug.setup(this);
     }
-
-//    public void initialiseStetho(){
-//        Stetho.initialize(
-//                Stetho.newInitializerBuilder(this)
-//                        .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
-//                        .enableWebKitInspector(RealmInspectorModulesProvider.builder(this).build())
-//                        .build());
-//    }
 }

@@ -14,6 +14,8 @@
 //import org.robolectric.RobolectricTestRunner;
 //import org.robolectric.annotation.Config;
 //
+//import javax.inject.Inject;
+//
 //import uk.co.placona.tradesafe.BuildConfig;
 //import uk.co.placona.tradesafe.R;
 //import uk.co.placona.tradesafe.component.ApplicationComponentTest;
@@ -27,35 +29,36 @@
 //@RunWith(RobolectricTestRunner.class)
 //@Config(constants = BuildConfig.class, sdk = 21)
 //@PowerMockIgnore({"org.mockito.*", "org.robolectric.*", "android.*"})
-//@PrepareForTest({Injector.class})
 //public class CreateActivityTest {
 //    private CreateActivity activity;
 //    private EditText reference_txt;
 //    private EditText description_text;
 //    private VideoView video_view;
 //
-////    @Before
-////    public void setupDagger() {
-////        ApplicationComponentTest applicationComponentTest = DaggerApplicationComponentTest.builder()
-////                .applicationContextModuleTest(new ApplicationContextModuleTest())
-////                .repositoryModuleTest(new RepositoryModuleTest(false))
-////                .build();
-////
-////        PowerMockito.mockStatic(Injector.class);
-////        PowerMockito.when(Injector.getApplicationComponent()).thenReturn(applicationComponentTest);
-////
-////        ((ApplicationComponentTest) Injector.getApplicationComponent()).inject(this);
-////
-////        activity = Robolectric.setupActivity(CreateActivity.class);
-////        reference_txt = (EditText) activity.findViewById(R.id.reference_txt);
-////        description_text = (EditText) activity.findViewById(R.id.description_txt);
-////        video_view = (VideoView) activity.findViewById(R.id.video_view);
-////    }
+//    @Inject
+//    Injector Injector;
 //
-////    @Test
-////    public void ActivityShouldNotBeNull() throws Exception {
-////        assertThat(activity).isNotNull();
-////    }
+//    @Before
+//    public void setupDagger() {
+//        ApplicationComponentTest applicationComponentTest = DaggerApplicationComponentTest.builder()
+//                .applicationContextModuleTest(new ApplicationContextModuleTest())
+//                .repositoryModuleTest(new RepositoryModuleTest(false))
+//                .build();
+//
+//        PowerMockito.when(Injector.getApplicationComponent()).thenReturn(applicationComponentTest);
+//
+//        ((ApplicationComponentTest) Injector.getApplicationComponent()).inject(this);
+//
+//        activity = Robolectric.setupActivity(CreateActivity.class);
+//        reference_txt = (EditText) activity.findViewById(R.id.reference_txt);
+//        description_text = (EditText) activity.findViewById(R.id.description_txt);
+//        video_view = (VideoView) activity.findViewById(R.id.video_view);
+//    }
+//
+//    @Test
+//    public void ActivityShouldNotBeNull() throws Exception {
+//        assertThat(activity).isNotNull();
+//    }
 ////
 ////    @Test
 ////    public void shouldHaveVisibleReference() throws Exception {
