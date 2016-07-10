@@ -16,6 +16,7 @@ import javax.inject.Inject;
 import co.moonmonkeylabs.realmrecyclerview.RealmRecyclerView;
 import io.realm.RealmResults;
 import uk.co.placona.tradesafe.R;
+import uk.co.placona.tradesafe.adapters.DividerItemDecoration;
 import uk.co.placona.tradesafe.adapters.TradeRecyclerViewAdapter;
 import uk.co.placona.tradesafe.component.Injector;
 import uk.co.placona.tradesafe.databinding.ActivityMainBinding;
@@ -50,14 +51,21 @@ public class MainActivity extends AppCompatActivity {
 
         realmRecyclerView = (RealmRecyclerView) findViewById(R.id.list_trades);
 
+        realmRecyclerView.addItemDecoration(new DividerItemDecoration(this));
         // load some data
         //addFakeData();
 
         loadTrades();
     }
 
+    @Override
+    protected void onResume(){
+        super.onResume();
+        tradeAdapter.notifyDataSetChanged();
+    }
+
     private void addFakeData() {
-        tradeRepository.clear();
+        //tradeRepository.clear();
 
         String mydate = java.text.DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
 

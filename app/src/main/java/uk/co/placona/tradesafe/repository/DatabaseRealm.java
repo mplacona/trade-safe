@@ -47,7 +47,7 @@ public class DatabaseRealm {
     }
 
     public <T extends RealmObject> RealmResults<T> findAll(Class<T> clazz) {
-        return getRealmInstance().where(clazz).findAll();
+        return getRealmInstance().where(clazz).findAll().sort("date");
     }
 
     public <T extends RealmObject> T find(Class<T> clazz, String id) {
