@@ -10,7 +10,7 @@ android:
     - extra-android-m2repository
 
 script:
-   - ./gradlew build connectedCheck
+   - ./gradlew clean build
    - ./gradlew build jacocoTestReport
 
 after_success: 

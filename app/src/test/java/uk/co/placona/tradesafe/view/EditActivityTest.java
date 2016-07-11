@@ -3,6 +3,7 @@ package uk.co.placona.tradesafe.view;
 import android.widget.EditText;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.api.mockito.PowerMockito;
@@ -49,6 +50,7 @@ public class EditActivityTest {
         ((ApplicationComponentTest) Injector.getApplicationComponent()).inject(this);
     }
 
+    @Ignore
     @Test
     public void ActivityShouldNotBeNull() throws Exception {
         activity = Robolectric.setupActivity(EditActivity.class);
