@@ -48,6 +48,7 @@ public class DatabaseRealmTest {
         assertThat(Realm.getDefaultInstance(), is(realmMock));
     }
 
+    @Ignore
     @Test
     public void test_add() {
         // TODO
