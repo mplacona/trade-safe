@@ -14,4 +14,4 @@ script:
    - ./gradlew build jacocoTestReport
 
 after_success: 
-  — bash <(curl -s https://codecov.io/bash)
+  — bash <(curl -s https://codecov.io/bash) -t 2cb61e35-e487-47fe-9a99-c4520e7bbf5d
