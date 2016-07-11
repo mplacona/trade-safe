@@ -8,6 +8,7 @@ import uk.co.placona.tradesafe.repository.TradeRepositoryTest;
 import javax.inject.Singleton;
 
 import dagger.Component;
+import uk.co.placona.tradesafe.view.EditActivityTest;
 
 
 @Singleton
@@ -17,5 +18,6 @@ public interface ApplicationComponentTest extends ApplicationComponent {
     //void inject(MainActivityTest activity);
     //void inject(CreateActivityTest activity);
     void inject(TradeRepositoryTest repository);
+    void inject(EditActivityTest repository);
 
 }

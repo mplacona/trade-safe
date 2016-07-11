@@ -35,8 +35,6 @@
 //    private EditText description_text;
 //    private VideoView video_view;
 //
-//    @Inject
-//    Injector Injector;
 //
 //    @Before
 //    public void setupDagger() {
