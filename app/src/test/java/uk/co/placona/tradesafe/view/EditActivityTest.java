@@ -28,7 +28,6 @@ import static org.mockito.Mockito.verify;
 
 @RunWith(PowerMockRunner.class)
 @Config(constants = BuildConfig.class, sdk = 21)
-@PowerMockIgnore({"org.mockito.*"})
 @PrepareForTest({Injector.class})
 public class EditActivityTest {
     private EditActivity activity;
