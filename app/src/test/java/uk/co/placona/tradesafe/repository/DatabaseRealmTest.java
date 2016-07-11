@@ -1,5 +1,6 @@
 package uk.co.placona.tradesafe.repository;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.api.mockito.PowerMockito;
@@ -27,6 +28,7 @@ public class DatabaseRealmTest {
 
     Realm realmMock;
 
+    @Ignore
     @Before
     public void setupRealm() {
         mockStatic(Realm.class);
@@ -40,6 +42,7 @@ public class DatabaseRealmTest {
         doNothing().when(realmMock).commitTransaction();
     }
 
+    @Ignore
     @Test
     public void shouldBeAbleToGetDefaultInstance() {
         assertThat(Realm.getDefaultInstance(), is(realmMock));
