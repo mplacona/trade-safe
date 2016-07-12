@@ -18,8 +18,8 @@ import java.util.Date;
 
 import javax.inject.Inject;
 
+import uk.co.placona.tradesafe.CustomApplication;
 import uk.co.placona.tradesafe.R;
-import uk.co.placona.tradesafe.component.Injector;
 import uk.co.placona.tradesafe.databinding.ActivityCreateBinding;
 import uk.co.placona.tradesafe.models.Trade;
 import uk.co.placona.tradesafe.repository.TradeRepository;
@@ -40,7 +40,9 @@ public class CreateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_create);
 
-        Injector.getApplicationComponent().inject(this);
+        ((CustomApplication) getApplication())
+                .getOrCreateApplicationComponent()
+                .inject(this);
 
         Intent intent = getIntent();
         videoUri = intent.getData();

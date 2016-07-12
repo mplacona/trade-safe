@@ -15,10 +15,10 @@ import javax.inject.Inject;
 
 import co.moonmonkeylabs.realmrecyclerview.RealmRecyclerView;
 import io.realm.RealmResults;
+import uk.co.placona.tradesafe.CustomApplication;
 import uk.co.placona.tradesafe.R;
 import uk.co.placona.tradesafe.adapters.DividerItemDecoration;
 import uk.co.placona.tradesafe.adapters.TradeRecyclerViewAdapter;
-import uk.co.placona.tradesafe.component.Injector;
 import uk.co.placona.tradesafe.databinding.ActivityMainBinding;
 import uk.co.placona.tradesafe.models.Trade;
 import uk.co.placona.tradesafe.repository.TradeRepository;
@@ -40,7 +40,9 @@ public class MainActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         setSupportActionBar(binding.toolbar);
 
-        Injector.getApplicationComponent().inject(this);
+        ((CustomApplication) getApplication())
+                .getOrCreateApplicationComponent()
+                .inject(this);
 
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override

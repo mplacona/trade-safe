@@ -2,10 +2,7 @@ package uk.co.placona.tradesafe.repository.impl;
 
 import android.util.Log;
 
-import javax.inject.Inject;
-
 import io.realm.RealmResults;
-import uk.co.placona.tradesafe.component.Injector;
 import uk.co.placona.tradesafe.models.Trade;
 import uk.co.placona.tradesafe.repository.DatabaseRealm;
 import uk.co.placona.tradesafe.repository.TradeRepository;
@@ -16,11 +13,10 @@ import uk.co.placona.tradesafe.repository.TradeRepository;
 public class TradeRepositoryImpl implements TradeRepository{
     private static final String TAG = "TradeRepositoryImpl";
 
-    @Inject
     DatabaseRealm databaseRealm;
 
-    public TradeRepositoryImpl() {
-        Injector.getApplicationComponent().inject(this);
+    public TradeRepositoryImpl(DatabaseRealm databaseRealm) {
+        this.databaseRealm = databaseRealm;
     }
 
     @Override

@@ -22,8 +22,8 @@ public class RepositoryModuleTest {
 
     @Provides
     @Singleton
-    public TradeRepository provideTradeRepository() {
-        return isMocked ? mock(TradeRepository.class) : new TradeRepositoryImpl();
+    public TradeRepository provideTradeRepository(DatabaseRealm databaseRealm) {
+        return isMocked ? mock(TradeRepository.class) : new TradeRepositoryImpl(databaseRealm);
     }
 
     @Provides

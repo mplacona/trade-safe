@@ -1,5 +1,7 @@
 package uk.co.placona.tradesafe.component.module;
 
+import android.content.Context;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -12,22 +14,21 @@ import uk.co.placona.tradesafe.repository.impl.TradeRepositoryImpl;
 
 @Module
 public class RepositoryModule {
-
     @Provides
     @Singleton
-    public TradeRepository provideTradeRepository() {
-        return new TradeRepositoryImpl();
+    public StethoDebug provideStethoDebug(Context context){
+        return new StethoDebugImpl(context);
     }
 
     @Provides
     @Singleton
-    public DatabaseRealm provideDatabaseRealm() {
-        return new DatabaseRealm();
+    public TradeRepository provideTradeRepository(DatabaseRealm databaseRealm) {
+        return new TradeRepositoryImpl(databaseRealm);
     }
 
     @Provides
     @Singleton
-    public StethoDebug provideStethoDebug(){
-        return new StethoDebugImpl();
+    public DatabaseRealm provideDatabaseRealm(Context context) {
+        return new DatabaseRealm(context);
     }
 }

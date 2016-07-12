@@ -2,24 +2,18 @@ package uk.co.placona.tradesafe.repository;
 
 import android.content.Context;
 
-import javax.inject.Inject;
-
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.RealmObject;
-import io.realm.RealmQuery;
 import io.realm.RealmResults;
-import uk.co.placona.tradesafe.component.Injector;
 
 public class DatabaseRealm {
-
-    @Inject
     Context mContext;
 
     RealmConfiguration realmConfiguration;
 
-    public DatabaseRealm() {
-        Injector.getApplicationComponent().inject(this);
+    public DatabaseRealm(Context context) {
+        mContext = context;
     }
 
     public void setup() {

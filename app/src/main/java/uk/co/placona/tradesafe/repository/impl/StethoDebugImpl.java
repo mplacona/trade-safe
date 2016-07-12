@@ -11,12 +11,19 @@ import uk.co.placona.tradesafe.repository.StethoDebug;
  * Created by mplacona on 04/07/2016.
  */
 public class StethoDebugImpl implements StethoDebug {
+
+    Context mContext;
+
+    public StethoDebugImpl(Context context) {
+        mContext = context;
+    }
+
     @Override
-    public void setup(Context context) {
+    public void setup() {
         Stetho.initialize(
-                Stetho.newInitializerBuilder(context)
-                        .enableDumpapp(Stetho.defaultDumperPluginsProvider(context))
-                        .enableWebKitInspector(RealmInspectorModulesProvider.builder(context).build())
+                Stetho.newInitializerBuilder(mContext)
+                        .enableDumpapp(Stetho.defaultDumperPluginsProvider(mContext))
+                        .enableWebKitInspector(RealmInspectorModulesProvider.builder(mContext).build())
                         .build());
     }
 }

@@ -3,24 +3,19 @@ package uk.co.placona.tradesafe.view;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Toast;
-
-import java.util.Calendar;
-import java.util.Date;
 
 import javax.inject.Inject;
 
-import io.realm.RealmQuery;
+import uk.co.placona.tradesafe.CustomApplication;
 import uk.co.placona.tradesafe.R;
-import uk.co.placona.tradesafe.component.Injector;
 import uk.co.placona.tradesafe.databinding.ActivityEditBinding;
 import uk.co.placona.tradesafe.models.Trade;
 import uk.co.placona.tradesafe.repository.TradeRepository;
@@ -41,7 +36,9 @@ public class EditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_edit);
 
-        Injector.getApplicationComponent().inject(this);
+        ((CustomApplication) getApplication())
+                .getOrCreateApplicationComponent()
+                .inject(this);
 
         Intent intent = getIntent();
 

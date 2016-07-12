@@ -1,13 +1,9 @@
 package uk.co.placona.tradesafe.repository;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.powermock.api.mockito.PowerMockito;
-import org.powermock.core.classloader.annotations.PowerMockIgnore;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
+import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 
 import java.util.Calendar;
@@ -16,9 +12,8 @@ import java.util.Date;
 import javax.inject.Inject;
 
 import uk.co.placona.tradesafe.BuildConfig;
-import uk.co.placona.tradesafe.component.ApplicationComponentTest;
+import uk.co.placona.tradesafe.TestCustomApplication;
 import uk.co.placona.tradesafe.component.DaggerApplicationComponentTest;
-import uk.co.placona.tradesafe.component.Injector;
 import uk.co.placona.tradesafe.component.module.ApplicationContextModuleTest;
 import uk.co.placona.tradesafe.component.module.RepositoryModuleTest;
 import uk.co.placona.tradesafe.models.Trade;
@@ -26,10 +21,8 @@ import uk.co.placona.tradesafe.models.Trade;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@RunWith(PowerMockRunner.class)
-@Config(constants = BuildConfig.class, sdk = 21)
-@PowerMockIgnore({"org.mockito.*"})
-@PrepareForTest({Injector.class})
+@RunWith(RobolectricGradleTestRunner.class)
+@Config(constants = BuildConfig.class, sdk = 21, application = TestCustomApplication.class)
 public class TradeRepositoryTest {
 
     @Inject
@@ -40,18 +33,12 @@ public class TradeRepositoryTest {
 
     @Before
     public void setupDagger() {
-        ApplicationComponentTest applicationComponentTest = DaggerApplicationComponentTest.builder()
+        DaggerApplicationComponentTest.builder()
                 .applicationContextModuleTest(new ApplicationContextModuleTest())
                 .repositoryModuleTest(new RepositoryModuleTest(false))
-                .build();
-
-        PowerMockito.mockStatic(Injector.class);
-        PowerMockito.when(Injector.getApplicationComponent()).thenReturn(applicationComponentTest);
-
-        ((ApplicationComponentTest) Injector.getApplicationComponent()).inject(this);
+                .build().inject(this);
     }
 
-    @Ignore
     @Test
     public void tradeRepository_add() {
         String mydate = java.text.DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
