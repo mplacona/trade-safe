@@ -3,7 +3,9 @@ package uk.co.placona.tradesafe.component;
 import javax.inject.Singleton;
 
 import dagger.Component;
+import io.realm.RealmBasedRecyclerViewAdapter;
 import uk.co.placona.tradesafe.CustomApplication;
+import uk.co.placona.tradesafe.adapters.TradeRecyclerViewAdapter;
 import uk.co.placona.tradesafe.repository.impl.StethoDebugImpl;
 import uk.co.placona.tradesafe.view.CreateActivity;
 import uk.co.placona.tradesafe.view.EditActivity;
@@ -25,5 +27,5 @@ public interface ApplicationComponent {
     void inject(DatabaseRealm databaseRealm);
     void inject(TradeRepositoryImpl tradeRepository);
     void inject(StethoDebugImpl stethoDebug);
-
+    //void inject(TradeRecyclerViewAdapter tradeRecyclerViewAdapter);
 }

@@ -1,5 +1,6 @@
 package uk.co.placona.tradesafe.component;
 
+import uk.co.placona.tradesafe.adapters.TradeRecyclerViewAdapter;
 import uk.co.placona.tradesafe.component.module.ApplicationContextModuleTest;
 import uk.co.placona.tradesafe.component.module.RepositoryModuleTest;
 import uk.co.placona.tradesafe.repository.TradeRepositoryTest;
@@ -21,5 +22,6 @@ public interface ApplicationComponentTest extends ApplicationComponent {
     void inject(CreateActivityTest activity);
     void inject(TradeRepositoryTest repository);
     void inject(EditActivityTest repository);
+    //void inject(TradeRecyclerViewAdapter repository);
 
 }

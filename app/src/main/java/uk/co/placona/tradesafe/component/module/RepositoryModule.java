@@ -6,6 +6,9 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import io.realm.RealmResults;
+import uk.co.placona.tradesafe.adapters.TradeRecyclerViewAdapter;
+import uk.co.placona.tradesafe.models.Trade;
 import uk.co.placona.tradesafe.repository.DatabaseRealm;
 import uk.co.placona.tradesafe.repository.StethoDebug;
 import uk.co.placona.tradesafe.repository.TradeRepository;
@@ -31,4 +34,10 @@ public class RepositoryModule {
     public DatabaseRealm provideDatabaseRealm(Context context) {
         return new DatabaseRealm(context);
     }
+
+//    @Provides
+//    @Singleton
+//    public TradeRecyclerViewAdapter provideTradeRecyclerViewAdapter(Context context, RealmResults<Trade> realmResults) {
+//        return new TradeRecyclerViewAdapter(context, realmResults);
+//    }
 }

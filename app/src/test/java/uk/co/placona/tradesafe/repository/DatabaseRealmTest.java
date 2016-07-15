@@ -10,6 +10,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import org.robolectric.annotation.Config;
 
 import io.realm.Realm;
+import io.realm.RealmObject;
 import uk.co.placona.tradesafe.BuildConfig;
 import uk.co.placona.tradesafe.TestCustomApplication;
 import uk.co.placona.tradesafe.models.Trade;
@@ -17,6 +18,8 @@ import uk.co.placona.tradesafe.models.Trade;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
 
@@ -50,13 +53,15 @@ public class DatabaseRealmTest {
 
 
     @Test
-    public void test_add() {
-        // TODO
-        /*
-        assertThat(Realm.getDefaultInstance(), is(realmMock));
-        verify(realmMock).beginTransaction();
-        verify(realmMock).copyToRealm(environment);
-        verify(realmMock).commitTransaction();
-        */
+    public void testBeginTransaction() {
+        realmMock.beginTransaction();
+        verify(realmMock, times(1)).beginTransaction();
+    }
+
+    @Test
+    public void testCopyOrUpdate() {
+        RealmObject x = new RealmObject() {};
+        realmMock.copyToRealmOrUpdate(x);
+        verify(realmMock, times(1)).copyToRealmOrUpdate(x);
     }
 }

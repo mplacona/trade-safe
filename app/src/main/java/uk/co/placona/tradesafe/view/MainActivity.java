@@ -34,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
     @Inject
     TradeRepository tradeRepository;
 
+//    @Inject
+//    TradeRecyclerViewAdapter tradeAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

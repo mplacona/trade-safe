@@ -40,7 +40,7 @@ public class TradeRepositoryTest {
     }
 
     @Test
-    public void tradeRepository_add() {
+    public void tradeRepositoryAdd() {
         String mydate = java.text.DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
 
         String TRADE_UUID = "UUID";
